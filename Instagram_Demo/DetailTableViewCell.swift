@@ -8,16 +8,18 @@
 import UIKit
 
 class DetailTableViewCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    @IBOutlet weak var iconImage: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var imageContent: UIImageView!
+    @IBOutlet weak var nameLabelSecond: UILabel!
+    @IBOutlet weak var comment: UITextView!
+    
+    func setTableviewCell(post: Post) {
+        iconImage.image = post.icon
+        nameLabel.text = post.name
+        imageContent.image = post.postImage
+        nameLabelSecond.text = post.name
+        comment.text = post.text
     }
     
 }

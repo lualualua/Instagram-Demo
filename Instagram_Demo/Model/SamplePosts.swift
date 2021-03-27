@@ -1,5 +1,5 @@
 //
-//  SamplePostsModel.swift
+//  SamplePosts.swift
 //  Instagram_Demo
 //
 //  Created by LylaArakawa on 16/03/21.
