@@ -23,7 +23,6 @@ class AddPictureViewController: UIViewController, UINavigationControllerDelegate
         super.viewDidLoad()
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.allowsMultipleSelection = true
     }
     
     @IBAction func cancelButton(_ sender: Any) {
@@ -98,19 +97,6 @@ extension AddPictureViewController: UICollectionViewDelegate, UIImagePickerContr
         postImages.append(cameraPic)
         collectionView.reloadData()
         dismiss(animated: true, completion: nil)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        if indexPath.item == 0 {
-            collectionView.cel
-        }
-        if let selectedItems = collectionView.indexPathsForSelectedItems {
-            if selectedItems.contains(indexPath) {
-                collectionView.deselectItem(at: indexPath, animated: true)
-                return false
-            }
-        }
-        return true
     }
 }
 
