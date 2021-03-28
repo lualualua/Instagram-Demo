@@ -50,6 +50,7 @@ extension AddPictureViewController: UICollectionViewDataSource {
         }else{
             cell.imageView.image = postImages[indexPath.row - 2]
             cell.imageView.contentMode = .scaleAspectFill
+            print("👀cell.imageView.bounds.size: \(cell.imageView.bounds.size)")
         }
         return cell
     }
