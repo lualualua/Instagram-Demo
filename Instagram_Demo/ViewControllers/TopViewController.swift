@@ -11,14 +11,11 @@ import PhotosUI
 class TopTableViewController: UIViewController {
 
     @IBOutlet weak private var collectionView: UICollectionView!
-
     var posts = [Post]()
     
     //collectionViewCell間のpadding
     let padding: CGFloat = 0.5
-
     let itemsPerRow: CGFloat = 3
-
 
     
     override func viewDidLoad() {
@@ -27,18 +24,31 @@ class TopTableViewController: UIViewController {
         posts = Post.generateSamplePosts()
         collectionView.dataSource = self
         collectionView.delegate = self
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let detailVC = segue.destination as! DetailTableViewCellViewController
     }
     
+    //投稿を追加ボタンをクリック
     @IBAction func addButton(_ sender: Any) {
         let addPictureVC = storyboard?.instantiateViewController(withIdentifier: "addPicVC") as! UINavigationController
         addPictureVC.modalPresentationStyle = .fullScreen
         self.present(addPictureVC, animated: true, completion: nil)
     }
 
+}
+
+//投稿追加のモーダルを閉じる
+extension TopTableViewController: modalViewDelegate {
+    func didUploadPost(comment: String, imageView: [UIImage?]) {
+        let addCommentVC = storyboard?.instantiateViewController(withIdentifier: "addCommentVC") as! AddCommentViewController
+        addCommentVC.delegate = self
+//        addCommentVC.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 }
 
 extension TopTableViewController: UICollectionViewDataSource {
@@ -65,9 +75,6 @@ extension TopTableViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
 
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return padding
@@ -77,9 +84,8 @@ extension TopTableViewController: UICollectionViewDelegateFlowLayout {
         return padding
     }
     
+    //写真をクリックしたら、それぞれの投稿内容に移動
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //if let
-//        performSegue(withIdentifier: "showDetailCellVC", sender: nil)
         let detailVC = (storyboard?.instantiateViewController(identifier: "detailTableviewVC"))! as DetailTableViewCellViewController
         detailVC.post = posts[indexPath.row]
         navigationController?.pushViewController(detailVC, animated: true)

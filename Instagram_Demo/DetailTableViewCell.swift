@@ -12,7 +12,7 @@ class DetailTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageContent: UIImageView!
     @IBOutlet weak var nameLabelSecond: UILabel!
-    @IBOutlet weak var comment: UITextView!
+    @IBOutlet weak var comment: UILabel!
     
     func setTableviewCell(post: Post) {
         iconImage.image = post.icon

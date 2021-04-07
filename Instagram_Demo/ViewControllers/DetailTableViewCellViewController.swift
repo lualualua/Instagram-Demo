@@ -15,15 +15,12 @@ class DetailTableViewCellViewController: UIViewController {
         super.viewDidLoad()
         
         setupTableView()
-
     }
     
     func setupTableView() {
         tableView.dataSource = self
         tableView.register(UINib(nibName: "DetailTableViewCell", bundle: nil) , forCellReuseIdentifier: "detailTableviewCell")
     }
-    
-
 
 }
 

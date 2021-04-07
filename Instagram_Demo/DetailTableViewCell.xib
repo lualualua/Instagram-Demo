@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,19 +23,12 @@
                             <constraint firstAttribute="width" constant="30" id="R7t-C1-Bvi"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Bh-Aa-7d4">
-                        <rect key="frame" x="8" y="254" width="306" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Bh-Aa-7d4">
+                        <rect key="frame" x="8" y="254" width="306" height="23"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="brc-ie-7Cl">
-                        <rect key="frame" x="0.0" y="282.5" width="322" height="135.5"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <color key="textColor" systemColor="labelColor"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    </textView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LLZ-2r-7zJ">
                         <rect key="frame" x="0.0" y="46" width="322" height="200"/>
                         <constraints>
@@ -49,42 +41,43 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9rQ-Ow-4XK">
+                        <rect key="frame" x="8" y="285" width="306" height="133"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="8" id="bbs-8A-TQG"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="BwY-gC-IqM" firstAttribute="centerY" secondItem="HYL-fO-8bS" secondAttribute="centerY" id="6E0-Cd-3xp"/>
                     <constraint firstItem="1Bh-Aa-7d4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="BnM-g4-Vtn"/>
-                    <constraint firstItem="brc-ie-7Cl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="FGR-Nj-G0C"/>
                     <constraint firstAttribute="trailing" secondItem="1Bh-Aa-7d4" secondAttribute="trailing" constant="8" id="Fdc-VQ-qDN"/>
                     <constraint firstItem="HYL-fO-8bS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="GjW-zT-glA"/>
                     <constraint firstAttribute="trailing" secondItem="BwY-gC-IqM" secondAttribute="trailing" id="Hdh-dJ-uWE"/>
                     <constraint firstItem="BwY-gC-IqM" firstAttribute="leading" secondItem="HYL-fO-8bS" secondAttribute="trailing" constant="8" id="KlT-kV-pSR"/>
-                    <constraint firstAttribute="trailing" secondItem="brc-ie-7Cl" secondAttribute="trailing" id="NUU-rn-K0p"/>
+                    <constraint firstItem="9rQ-Ow-4XK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="NZ6-Ue-dIc"/>
                     <constraint firstItem="HYL-fO-8bS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="PCd-r1-Xsr"/>
                     <constraint firstItem="1Bh-Aa-7d4" firstAttribute="top" secondItem="LLZ-2r-7zJ" secondAttribute="bottom" constant="8" id="UhN-sK-1TK"/>
                     <constraint firstItem="LLZ-2r-7zJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="VYA-gS-KgB"/>
-                    <constraint firstAttribute="bottom" secondItem="brc-ie-7Cl" secondAttribute="bottom" constant="8" id="YZV-QM-TOf"/>
-                    <constraint firstItem="brc-ie-7Cl" firstAttribute="top" secondItem="1Bh-Aa-7d4" secondAttribute="bottom" constant="8" id="Z2i-6w-vRm"/>
+                    <constraint firstAttribute="trailing" secondItem="9rQ-Ow-4XK" secondAttribute="trailing" constant="8" id="arx-Px-LAP"/>
                     <constraint firstAttribute="trailing" secondItem="LLZ-2r-7zJ" secondAttribute="trailing" id="bRT-YG-p2D"/>
+                    <constraint firstAttribute="bottom" secondItem="9rQ-Ow-4XK" secondAttribute="bottom" constant="8" id="jhh-4a-IbG"/>
+                    <constraint firstItem="9rQ-Ow-4XK" firstAttribute="top" secondItem="1Bh-Aa-7d4" secondAttribute="bottom" constant="8" id="kHO-8H-0BW"/>
                     <constraint firstItem="LLZ-2r-7zJ" firstAttribute="top" secondItem="HYL-fO-8bS" secondAttribute="bottom" constant="8" id="wQP-Yj-Ma7"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="comment" destination="brc-ie-7Cl" id="X6V-gg-UE3"/>
+                <outlet property="comment" destination="9rQ-Ow-4XK" id="DfD-XZ-LV6"/>
                 <outlet property="iconImage" destination="HYL-fO-8bS" id="cH4-QI-2tF"/>
                 <outlet property="imageContent" destination="LLZ-2r-7zJ" id="xl6-yM-OOI"/>
                 <outlet property="nameLabel" destination="BwY-gC-IqM" id="cMi-aR-Hzq"/>
                 <outlet property="nameLabelSecond" destination="1Bh-Aa-7d4" id="kZD-Uf-Yg7"/>
             </connections>
-            <point key="canvasLocation" x="-107" y="126"/>
+            <point key="canvasLocation" x="-107.24637681159422" y="125.89285714285714"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>
