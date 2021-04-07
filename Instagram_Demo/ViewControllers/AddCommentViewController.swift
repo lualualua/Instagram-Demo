@@ -51,12 +51,12 @@ class AddCommentViewController: UIViewController {
         updateCount()
     }
     
-    //投稿ボタン
+    //投稿ボタンを押したらモーダルを閉じる
     @IBAction func uploadButton(_ sender: Any) {
         guard let comment = textView.text else {return}
-        self.dismiss(animated: true, completion: nil)
+//        self.dismiss(animated: true, completion: nil)
         delegate?.didUploadPost(comment: comment, imageView: selectedImagesArr)
-        print("hi")
+
     }
     
 
