@@ -16,7 +16,6 @@ class TopTableViewController: UIViewController {
     //collectionViewCell間のpadding
     let padding: CGFloat = 0.5
     let itemsPerRow: CGFloat = 3
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +23,7 @@ class TopTableViewController: UIViewController {
         posts = Post.generateSamplePosts()
         collectionView.dataSource = self
         collectionView.delegate = self
-        
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -36,6 +35,12 @@ class TopTableViewController: UIViewController {
         let addPictureVC = storyboard?.instantiateViewController(withIdentifier: "addPicVC") as! UINavigationController
         addPictureVC.modalPresentationStyle = .fullScreen
         self.present(addPictureVC, animated: true, completion: nil)
+//
+//        let vc = AddPictureViewController()
+//        let vc2 = AddCommentViewController()
+//        vc2.delegate = self
+//        let navigationController = UINavigationController(rootViewController: vc)
+//        present(navigationController, animated: true, completion: nil)
     }
 
 }
@@ -43,8 +48,8 @@ class TopTableViewController: UIViewController {
 //投稿追加のモーダルを閉じる
 extension TopTableViewController: modalViewDelegate {
     func didUploadPost(comment: String, imageView: [UIImage?]) {
-        let addCommentVC = storyboard?.instantiateViewController(withIdentifier: "addCommentVC") as! AddCommentViewController
-        addCommentVC.delegate = self
+//        let addCommentVC = storyboard?.instantiateViewController(withIdentifier: "addCommentVC") as! AddCommentViewController
+//        addCommentVC.delegate = self
 //        addCommentVC.dismiss(animated: true, completion: nil)
         self.navigationController?.popViewController(animated: true)
     }

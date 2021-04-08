@@ -22,6 +22,7 @@
 		2A7F4C1D2602F62000096BCD /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7F4C1B2602F62000096BCD /* DetailTableViewCell.swift */; };
 		2A7F4C1E2602F62000096BCD /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7F4C1C2602F62000096BCD /* DetailTableViewCell.xib */; };
 		2A7F4C252606F73800096BCD /* AddPicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7F4C242606F73800096BCD /* AddPicCollectionViewCell.swift */; };
+		2AF48CBB261EA70900BFD7AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF48CBA261EA70900BFD7AA /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		2A7F4C1B2602F62000096BCD /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		2A7F4C1C2602F62000096BCD /* DetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
 		2A7F4C242606F73800096BCD /* AddPicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPicCollectionViewCell.swift; sourceTree = "<group>"; };
+		2AF48CBA261EA70900BFD7AA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				2A7F4C0225FF0B1D00096BCD /* DetailTableViewCellViewController.swift */,
 				2A7F4BF425FF091300096BCD /* AddPictureViewController.swift */,
 				2A7F4BFE25FF098E00096BCD /* AddCommentViewController.swift */,
+				2AF48CBA261EA70900BFD7AA /* ViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				2A7F4BBA25FAD9BA00096BCD /* TopViewController.swift in Sources */,
 				2A7F4C102601B3FD00096BCD /* Model.swift in Sources */,
 				2A7F4C1D2602F62000096BCD /* DetailTableViewCell.swift in Sources */,
+				2AF48CBB261EA70900BFD7AA /* ViewController.swift in Sources */,
 				2A7F4B9C25FAD49B00096BCD /* AppDelegate.swift in Sources */,
 				2A7F4B9E25FAD49B00096BCD /* SceneDelegate.swift in Sources */,
 				2A7F4BF525FF091300096BCD /* AddPictureViewController.swift in Sources */,
