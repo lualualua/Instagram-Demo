@@ -26,8 +26,13 @@ class AddCommentViewController: UIViewController {
     var viewWidth: CGFloat!
     var viewHeight: CGFloat!
     var collectionViewSize: CGFloat!
+    var toolbarHeight: CGFloat!
     
     var delegate: modalViewDelegate?
+    var topbarHeight: CGFloat {
+         return (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0) +
+             (self.navigationController?.navigationBar.frame.height ?? 0.0)
+     }
 
     
     override func viewDidLoad() {
@@ -48,6 +53,19 @@ class AddCommentViewController: UIViewController {
         placeholderLabel.textColor = UIColor.lightGray
         placeholderLabel.isHidden = !textView.text.isEmpty
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        toolBar.sizeToFit()
+        toolbarHeight = toolBar.frame.height
+        
+        let spacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(doneButtonTapped))
+        
+        toolBar.items = [spacer, doneButton]
+        textView.inputAccessoryView = toolBar
+        
         updateCount()
     }
     
@@ -56,9 +74,31 @@ class AddCommentViewController: UIViewController {
         guard let comment = textView.text else {return}
 //        self.dismiss(animated: true, completion: nil)
         delegate?.didUploadPost(comment: comment, imageView: selectedImagesArr)
+<<<<<<< HEAD
 
+=======
+    }
+
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y = self.view.frame.origin.y - keyboardSize.height + toolbarHeight + topbarHeight
+            } else { return }
+        }
     }
     
+    @objc func keyboardWillHide() {
+        self.view.frame.origin.y = 0
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+>>>>>>> develop
+    }
+    
+    @objc func doneButtonTapped() {
+        self.view.endEditing(true)
+    }
 
 }
 
