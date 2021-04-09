@@ -17,7 +17,7 @@ class DetailTableViewCell: UITableViewCell {
     func setTableviewCell(post: Post) {
         iconImage.image = post.icon
         nameLabel.text = post.name
-        imageContent.image = post.postImage
+        imageContent.image = post.postImage[0]
         nameLabelSecond.text = post.name
         comment.text = post.text
     }

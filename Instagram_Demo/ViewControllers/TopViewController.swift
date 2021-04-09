@@ -17,10 +17,12 @@ class TopTableViewController: UIViewController {
     let padding: CGFloat = 0.5
     let itemsPerRow: CGFloat = 3
     
+    var comment: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        posts = Post.generateSamplePosts()
+        posts = generateSamplePosts()
         collectionView.dataSource = self
         collectionView.delegate = self
 
@@ -32,28 +34,23 @@ class TopTableViewController: UIViewController {
     
     //投稿を追加ボタンをクリック
     @IBAction func addButton(_ sender: Any) {
-        let addPictureVC = storyboard?.instantiateViewController(withIdentifier: "addPicVC") as! UINavigationController
+        let addPictureVC = storyboard?.instantiateViewController(withIdentifier: "addPicVC") as! AddPictureViewController
+        addPictureVC.delegate = self
+        let navigationController = UINavigationController(rootViewController: addPictureVC)
         addPictureVC.modalPresentationStyle = .fullScreen
-        self.present(addPictureVC, animated: true, completion: nil)
-//
-//        let vc = AddPictureViewController()
-//        let vc2 = AddCommentViewController()
-//        vc2.delegate = self
-//        let navigationController = UINavigationController(rootViewController: vc)
-//        present(navigationController, animated: true, completion: nil)
+        self.present(navigationController, animated: true, completion: nil)
     }
 
 }
 
-//投稿追加のモーダルを閉じる
-extension TopTableViewController: modalViewDelegate {
-    func didUploadPost(comment: String, imageView: [UIImage?]) {
-//        let addCommentVC = storyboard?.instantiateViewController(withIdentifier: "addCommentVC") as! AddCommentViewController
-//        addCommentVC.delegate = self
-//        addCommentVC.dismiss(animated: true, completion: nil)
-        self.navigationController?.popViewController(animated: true)
+//投稿追加のデータを渡す
+extension TopTableViewController: passDataToTopViewDelegate {
+    func passDataToTop(comment: String, imageView: [UIImage]!) {
+
+        posts.append(contentsOf: updatePost(comment: comment, imageView: imageView))
+        collectionView.reloadData()
     }
-    
+
 }
 
 extension TopTableViewController: UICollectionViewDataSource {
