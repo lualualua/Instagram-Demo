@@ -8,30 +8,21 @@
 import Foundation
 import UIKit
 
-class Post: NSObject {
-    
+struct Post {
     var name: String
     var text: String
     var icon: UIImage!
-    var postImage: UIImage!
+    var postImage: [UIImage]!
     
-    init(name: String, text: String, icon: UIImage!, postImage: UIImage! ) {
+    init(name: String, text: String, icon: UIImage!, postImage: [UIImage]! ) {
         self.name = name
         self.text = text
         self.icon = icon
         self.postImage = postImage
     }
+}
 
-
-var posts: [Post] = []
-
-func generatePost() -> [Post] {
-    let name = "Osakana"
-    
-    return posts
-    }
-
-class func generateSamplePosts() -> [Post] {
+ func generateSamplePosts() -> [Post] {
     var posts: [Post] = []
     var postImages = ["1", "2", "3", "4", "5", "6", "7", "8"]
     var texts = ["欲得づくの商人たちがしているすべての不正行為のうちで、種々の食べ物の誤魔化しほど非難すべきであり広く行き渡っているものはない。",
@@ -46,11 +37,23 @@ class func generateSamplePosts() -> [Post] {
     for i in 0..<8 {
         let name = "keita"
         let text = texts[i]
-        let postImage = UIImage(named: postImages[i])
+        let postImage = [UIImage(named: postImages[i])!]
         let icon = UIImage(systemName: "ant.circle")
         let post = Post(name: name, text: text, icon: icon, postImage: postImage)
         posts.append(post)
     }
     return posts
-  }
+}
+
+
+var posts: [Post] = []
+
+func updatePost(comment: String, imageView: [UIImage]!) -> [Post] {
+    let name = "Osakana"
+    let text = comment
+    let postImage = imageView
+    let icon = UIImage(systemName: "ant.circle")
+    let post = Post(name: name, text: text, icon: icon, postImage: postImage)
+    posts.append(post)
+    return posts
 }

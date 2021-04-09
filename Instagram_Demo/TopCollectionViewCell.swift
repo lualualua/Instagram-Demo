@@ -11,6 +11,6 @@ class TopCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     
     func setImage(post: Post) {
-        imageView.image = post.postImage
+        imageView.image = post.postImage[0]
     }
 }

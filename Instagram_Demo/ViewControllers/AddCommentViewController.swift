@@ -8,7 +8,7 @@
 import UIKit
 
 protocol modalViewDelegate {
-    func didUploadPost(comment: String, imageView: [UIImage?])
+    func didUploadPost(comment: String, imageView: [UIImage]!)
 }
 
 class AddCommentViewController: UIViewController {
@@ -56,7 +56,6 @@ class AddCommentViewController: UIViewController {
         guard let comment = textView.text else {return}
         self.dismiss(animated: true, completion: nil)
         delegate?.didUploadPost(comment: comment, imageView: selectedImagesArr)
-        print("hi")
     }
     
 

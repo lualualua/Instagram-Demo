@@ -8,6 +8,10 @@
 import UIKit
 import PhotosUI
 
+protocol passDataToTopViewDelegate {
+    func passDataToTop(comment: String, imageView: [UIImage]!)
+}
+
 class AddPictureViewController: UIViewController, UINavigationControllerDelegate {
     let padding: CGFloat = 1
     let itemsPerRow: CGFloat = 3
@@ -19,6 +23,10 @@ class AddPictureViewController: UIViewController, UINavigationControllerDelegate
     
     var arrSelectedIndex = [IndexPath]()
     var arrSelectedImages = [UIImage]()
+    var comment: String = ""
+    var imageView = [UIImage]()
+    
+    var delegate: passDataToTopViewDelegate?
 
     @IBOutlet weak private var collectionView: UICollectionView!
 
@@ -36,9 +44,17 @@ class AddPictureViewController: UIViewController, UINavigationControllerDelegate
     @IBAction func nextVCButton(_ sender: Any) {
         let addCommentVC = (storyboard?.instantiateViewController(withIdentifier: "addCommentVC")) as! AddCommentViewController
         addCommentVC.selectedImagesArr = arrSelectedImages
+        addCommentVC.delegate = self
         navigationController?.pushViewController(addCommentVC, animated: true)
 
     }
+}
+extension AddPictureViewController: modalViewDelegate {
+    func didUploadPost(comment: String, imageView: [UIImage]!) {
+        delegate?.passDataToTop(comment: comment, imageView: imageView)
+    }
+    
+    
 }
 
 extension AddPictureViewController: UICollectionViewDataSource {
