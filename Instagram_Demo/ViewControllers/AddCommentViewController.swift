@@ -74,9 +74,6 @@ class AddCommentViewController: UIViewController {
         guard let comment = textView.text else {return}
 //        self.dismiss(animated: true, completion: nil)
         delegate?.didUploadPost(comment: comment, imageView: selectedImagesArr)
-<<<<<<< HEAD
-
-=======
     }
 
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -93,7 +90,6 @@ class AddCommentViewController: UIViewController {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
->>>>>>> develop
     }
     
     @objc func doneButtonTapped() {
