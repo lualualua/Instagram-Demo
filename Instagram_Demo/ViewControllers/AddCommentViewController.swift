@@ -22,13 +22,14 @@ class AddCommentViewController: UIViewController {
     var cellWidth: CGFloat!
     var cellHeight: CGFloat!
     var insetX: CGFloat!
-    var insetY: CGFloat!
     var viewWidth: CGFloat!
     var viewHeight: CGFloat!
     var collectionViewSize: CGFloat!
     var toolbarHeight: CGFloat!
     
     var delegate: modalViewDelegate?
+    
+    //画面上部のstatusBarとNavigationBarの高さ
     var topbarHeight: CGFloat {
          return (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0) +
              (self.navigationController?.navigationBar.frame.height ?? 0.0)
@@ -43,7 +44,13 @@ class AddCommentViewController: UIViewController {
         
         textView.delegate = self
         
-        //TextViewにプレースホルダーを設置
+        setPlaceholder()
+        setToolBar()
+        updateCount()
+    }
+    
+    //TextViewにプレースホルダーを設置
+    func setPlaceholder() {
         placeholderLabel = UILabel()
         placeholderLabel.text = "コメントを追加"
         placeholderLabel.font = UIFont.italicSystemFont(ofSize: (textView.font?.pointSize)!)
@@ -55,7 +62,10 @@ class AddCommentViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-
+    }
+    
+    //キーボード上部に「Done」ボタンを設置
+    func setToolBar() {
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         toolBar.sizeToFit()
         toolbarHeight = toolBar.frame.height
@@ -65,8 +75,6 @@ class AddCommentViewController: UIViewController {
         
         toolBar.items = [spacer, doneButton]
         textView.inputAccessoryView = toolBar
-        
-        updateCount()
     }
     
     //投稿ボタンを押したらモーダルを閉じる
@@ -106,7 +114,7 @@ extension AddCommentViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImagesCollectionViewCell", for: indexPath) as! ImagesCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addCommentCollectionViewCell", for: indexPath) as! AddCommentCollectionViewCell
         cell.imageView.image = selectedImagesArr[indexPath.item]
         cell.imageView.layer.cornerRadius = 10.0
         cell.imageView.contentMode = .scaleAspectFill
@@ -124,12 +132,13 @@ extension AddCommentViewController: UICollectionViewDelegate, UICollectionViewDa
         }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-
+        
+        if selectedImagesArr.count == 1 {
+            insetX = (collectionView.bounds.width - cellWidth) / 2.0
+            return UIEdgeInsets(top: 0, left: insetX, bottom: 0, right: insetX)
+        }
         insetX = (collectionView.bounds.width - cellWidth) / 4.0
-        insetY = (collectionView.bounds.height - cellHeight) / 2.0
-        
         return UIEdgeInsets(top: 0, left: insetX, bottom: 0, right: insetX)
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -137,6 +146,7 @@ extension AddCommentViewController: UICollectionViewDelegate, UICollectionViewDa
         return insetX
     }
 }
+
 
 extension AddCommentViewController: UITextViewDelegate {
     
@@ -154,6 +164,7 @@ extension AddCommentViewController: UITextViewDelegate {
         // make sure the result is under 16 characters
         return updatedText.count <= 100
     }
+    
     //文字数カウントラベルの表示
     func updateCount() {
         let count = textView.text.count

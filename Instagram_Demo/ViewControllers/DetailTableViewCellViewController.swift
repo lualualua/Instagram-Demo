@@ -13,7 +13,6 @@ class DetailTableViewCellViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupTableView()
     }
     
@@ -21,7 +20,6 @@ class DetailTableViewCellViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: "DetailTableViewCell", bundle: nil) , forCellReuseIdentifier: "detailTableviewCell")
     }
-
 }
 
 extension DetailTableViewCellViewController: UITableViewDataSource {

@@ -12,12 +12,11 @@ class TopTableViewController: UIViewController {
 
     @IBOutlet weak private var collectionView: UICollectionView!
     var posts = [Post]()
-    
+    var comment: String = ""
+
     //collectionViewCell間のpadding
     let padding: CGFloat = 0.5
     let itemsPerRow: CGFloat = 3
-    
-    var comment: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +24,6 @@ class TopTableViewController: UIViewController {
         posts = generateSamplePosts()
         collectionView.dataSource = self
         collectionView.delegate = self
-
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -37,20 +35,17 @@ class TopTableViewController: UIViewController {
         let addPictureVC = storyboard?.instantiateViewController(withIdentifier: "addPicVC") as! AddPictureViewController
         addPictureVC.delegate = self
         let navigationController = UINavigationController(rootViewController: addPictureVC)
-        addPictureVC.modalPresentationStyle = .fullScreen
+        navigationController.modalPresentationStyle = .fullScreen
         self.present(navigationController, animated: true, completion: nil)
     }
-
 }
 
 //投稿追加のデータを渡す
 extension TopTableViewController: passDataToTopViewDelegate {
     func passDataToTop(comment: String, imageView: [UIImage]!) {
-
         posts.append(contentsOf: updatePost(comment: comment, imageView: imageView))
         collectionView.reloadData()
     }
-
 }
 
 extension TopTableViewController: UICollectionViewDataSource {
@@ -60,11 +55,9 @@ extension TopTableViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! TopCollectionViewCell
-        cell.setImage(post: posts[indexPath.row])
+        cell.setImage(post: posts[indexPath.item])
         return cell
     }
-    
-    
 }
 
 extension TopTableViewController: UICollectionViewDelegateFlowLayout {
@@ -86,7 +79,7 @@ extension TopTableViewController: UICollectionViewDelegateFlowLayout {
         return padding
     }
     
-    //写真をクリックしたら、それぞれの投稿内容に移動
+    //写真をクリックしたらDetailTableViewCellに移動
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailVC = (storyboard?.instantiateViewController(identifier: "detailTableviewVC"))! as DetailTableViewCellViewController
         detailVC.post = posts[indexPath.row]

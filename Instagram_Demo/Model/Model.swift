@@ -24,8 +24,8 @@ struct Post {
 
  func generateSamplePosts() -> [Post] {
     var posts: [Post] = []
-    var postImages = ["1", "2", "3", "4", "5", "6", "7", "8"]
-    var texts = ["欲得づくの商人たちがしているすべての不正行為のうちで、種々の食べ物の誤魔化しほど非難すべきであり広く行き渡っているものはない。",
+    let postImages = ["1", "2", "3", "4", "5", "6", "7", "8"]
+    let texts = ["欲得づくの商人たちがしているすべての不正行為のうちで、種々の食べ物の誤魔化しほど非難すべきであり広く行き渡っているものはない。",
         "考えが正しければ、その振る舞いも必ず正しくなる。行動が正しければ、生活も正しくなる。人生が正しければ、そこで必ず幸せになる。",
         "窓の外にある景色を、ぼくは見ていた。",
         "きみのおかげでリアルになれる そんな力を持っているのはきみだけ",
@@ -46,14 +46,15 @@ struct Post {
 }
 
 
-var posts: [Post] = []
-
 func updatePost(comment: String, imageView: [UIImage]!) -> [Post] {
+    var posts: [Post] = []
+    
     let name = "Osakana"
     let text = comment
     let postImage = imageView
     let icon = UIImage(systemName: "ant.circle")
     let post = Post(name: name, text: text, icon: icon, postImage: postImage)
     posts.append(post)
+
     return posts
 }
