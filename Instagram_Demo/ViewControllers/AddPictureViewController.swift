@@ -79,6 +79,7 @@ extension AddPictureViewController: UICollectionViewDataSource {
             cell.imageView.image = postImages[indexPath.row - 2]
             cell.imageView.contentMode = .scaleAspectFill
             cell.imageView.sizeToFit()
+
         }
         return cell
     }
