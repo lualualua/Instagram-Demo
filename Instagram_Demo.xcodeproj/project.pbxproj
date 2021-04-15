@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A7A002026126C7200CDD7A7 /* AddCommentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7A001F26126C7200CDD7A7 /* AddCommentCollectionViewCell.swift */; };
 		2A7F4B9C25FAD49B00096BCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7F4B9B25FAD49B00096BCD /* AppDelegate.swift */; };
 		2A7F4B9E25FAD49B00096BCD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7F4B9D25FAD49B00096BCD /* SceneDelegate.swift */; };
 		2A7F4BA325FAD49B00096BCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A7F4BA125FAD49B00096BCD /* Main.storyboard */; };
@@ -14,19 +15,19 @@
 		2A7F4BA825FAD49C00096BCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A7F4BA625FAD49C00096BCD /* LaunchScreen.storyboard */; };
 		2A7F4BBA25FAD9BA00096BCD /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7F4BB925FAD9BA00096BCD /* TopViewController.swift */; };
 		2A7F4BF525FF091300096BCD /* AddPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7F4BF425FF091300096BCD /* AddPictureViewController.swift */; };
-		2A7F4BF825FF093C00096BCD /* EditPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7F4BF725FF093C00096BCD /* EditPhotoViewController.swift */; };
-		2A7F4BFB25FF096500096BCD /* ImageFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7F4BFA25FF096500096BCD /* ImageFilterViewController.swift */; };
 		2A7F4BFF25FF098E00096BCD /* AddCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7F4BFE25FF098E00096BCD /* AddCommentViewController.swift */; };
 		2A7F4C0325FF0B1D00096BCD /* DetailTableViewCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7F4C0225FF0B1D00096BCD /* DetailTableViewCellViewController.swift */; };
 		2A7F4C102601B3FD00096BCD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7F4C0F2601B3FD00096BCD /* Model.swift */; };
-		2A7F4C132601BA6E00096BCD /* SamplePosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7F4C122601BA6E00096BCD /* SamplePosts.swift */; };
 		2A7F4C1826028A3600096BCD /* TopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7F4C1726028A3600096BCD /* TopCollectionViewCell.swift */; };
-		2A7F4C1D2602F62000096BCD /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7F4C1B2602F62000096BCD /* DetailTableViewCell.swift */; };
 		2A7F4C1E2602F62000096BCD /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7F4C1C2602F62000096BCD /* DetailTableViewCell.xib */; };
 		2A7F4C252606F73800096BCD /* AddPicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7F4C242606F73800096BCD /* AddPicCollectionViewCell.swift */; };
+		2AF48CCB2623976100BFD7AA /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF48CC92623976100BFD7AA /* DetailCollectionViewCell.swift */; };
+		2AF48CCC2623976100BFD7AA /* DetailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AF48CCA2623976100BFD7AA /* DetailCollectionViewCell.xib */; };
+		2AF48CD026239CF900BFD7AA /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF48CCF26239CF900BFD7AA /* DetailTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A7A001F26126C7200CDD7A7 /* AddCommentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentCollectionViewCell.swift; sourceTree = "<group>"; };
 		2A7F4B9825FAD49B00096BCD /* Instagram_Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram_Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A7F4B9B25FAD49B00096BCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A7F4B9D25FAD49B00096BCD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,16 +37,15 @@
 		2A7F4BA925FAD49C00096BCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A7F4BB925FAD9BA00096BCD /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		2A7F4BF425FF091300096BCD /* AddPictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPictureViewController.swift; sourceTree = "<group>"; };
-		2A7F4BF725FF093C00096BCD /* EditPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPhotoViewController.swift; sourceTree = "<group>"; };
-		2A7F4BFA25FF096500096BCD /* ImageFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFilterViewController.swift; sourceTree = "<group>"; };
 		2A7F4BFE25FF098E00096BCD /* AddCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentViewController.swift; sourceTree = "<group>"; };
 		2A7F4C0225FF0B1D00096BCD /* DetailTableViewCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCellViewController.swift; sourceTree = "<group>"; };
 		2A7F4C0F2601B3FD00096BCD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		2A7F4C122601BA6E00096BCD /* SamplePosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePosts.swift; sourceTree = "<group>"; };
 		2A7F4C1726028A3600096BCD /* TopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCollectionViewCell.swift; sourceTree = "<group>"; };
-		2A7F4C1B2602F62000096BCD /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		2A7F4C1C2602F62000096BCD /* DetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
 		2A7F4C242606F73800096BCD /* AddPicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPicCollectionViewCell.swift; sourceTree = "<group>"; };
+		2AF48CC92623976100BFD7AA /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		2AF48CCA2623976100BFD7AA /* DetailCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailCollectionViewCell.xib; sourceTree = "<group>"; };
+		2AF48CCF26239CF900BFD7AA /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +97,6 @@
 				2A7F4BB925FAD9BA00096BCD /* TopViewController.swift */,
 				2A7F4C0225FF0B1D00096BCD /* DetailTableViewCellViewController.swift */,
 				2A7F4BF425FF091300096BCD /* AddPictureViewController.swift */,
-				2A7F4BF725FF093C00096BCD /* EditPhotoViewController.swift */,
-				2A7F4BFA25FF096500096BCD /* ImageFilterViewController.swift */,
 				2A7F4BFE25FF098E00096BCD /* AddCommentViewController.swift */,
 			);
 			path = ViewControllers;
@@ -108,9 +106,12 @@
 			isa = PBXGroup;
 			children = (
 				2A7F4C1726028A3600096BCD /* TopCollectionViewCell.swift */,
-				2A7F4C1B2602F62000096BCD /* DetailTableViewCell.swift */,
+				2AF48CCF26239CF900BFD7AA /* DetailTableViewCell.swift */,
 				2A7F4C1C2602F62000096BCD /* DetailTableViewCell.xib */,
+				2AF48CC92623976100BFD7AA /* DetailCollectionViewCell.swift */,
+				2AF48CCA2623976100BFD7AA /* DetailCollectionViewCell.xib */,
 				2A7F4C242606F73800096BCD /* AddPicCollectionViewCell.swift */,
+				2A7A001F26126C7200CDD7A7 /* AddCommentCollectionViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -119,7 +120,6 @@
 			isa = PBXGroup;
 			children = (
 				2A7F4C0F2601B3FD00096BCD /* Model.swift */,
-				2A7F4C122601BA6E00096BCD /* SamplePosts.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -185,6 +185,7 @@
 				2A7F4BA525FAD49C00096BCD /* Assets.xcassets in Resources */,
 				2A7F4C1E2602F62000096BCD /* DetailTableViewCell.xib in Resources */,
 				2A7F4BA325FAD49B00096BCD /* Main.storyboard in Resources */,
+				2AF48CCC2623976100BFD7AA /* DetailCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,17 +198,16 @@
 			files = (
 				2A7F4C1826028A3600096BCD /* TopCollectionViewCell.swift in Sources */,
 				2A7F4BFF25FF098E00096BCD /* AddCommentViewController.swift in Sources */,
+				2AF48CD026239CF900BFD7AA /* DetailTableViewCell.swift in Sources */,
 				2A7F4C0325FF0B1D00096BCD /* DetailTableViewCellViewController.swift in Sources */,
-				2A7F4BFB25FF096500096BCD /* ImageFilterViewController.swift in Sources */,
 				2A7F4BBA25FAD9BA00096BCD /* TopViewController.swift in Sources */,
 				2A7F4C102601B3FD00096BCD /* Model.swift in Sources */,
-				2A7F4C1D2602F62000096BCD /* DetailTableViewCell.swift in Sources */,
-				2A7F4BF825FF093C00096BCD /* EditPhotoViewController.swift in Sources */,
 				2A7F4B9C25FAD49B00096BCD /* AppDelegate.swift in Sources */,
 				2A7F4B9E25FAD49B00096BCD /* SceneDelegate.swift in Sources */,
 				2A7F4BF525FF091300096BCD /* AddPictureViewController.swift in Sources */,
 				2A7F4C252606F73800096BCD /* AddPicCollectionViewCell.swift in Sources */,
-				2A7F4C132601BA6E00096BCD /* SamplePosts.swift in Sources */,
+				2A7A002026126C7200CDD7A7 /* AddCommentCollectionViewCell.swift in Sources */,
+				2AF48CCB2623976100BFD7AA /* DetailCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
