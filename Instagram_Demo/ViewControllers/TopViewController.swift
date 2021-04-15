@@ -11,12 +11,12 @@ import PhotosUI
 class TopTableViewController: UIViewController {
 
     @IBOutlet weak private var collectionView: UICollectionView!
-    var posts = [Post]()
-    var comment: String = ""
+    private var posts = [Post]()
+    private var comment: String = ""
 
     //collectionViewCell間のpadding
-    let padding: CGFloat = 0.5
-    let itemsPerRow: CGFloat = 3
+    private let padding: CGFloat = 0.5
+    private let itemsPerRow: CGFloat = 3
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,7 @@ class TopTableViewController: UIViewController {
         let detailVC = segue.destination as! DetailTableViewCellViewController
     }
     
-    //投稿を追加ボタンをクリック
+    //投稿を追加ボタンを押した時
     @IBAction func addButton(_ sender: Any) {
         let addPictureVC = storyboard?.instantiateViewController(withIdentifier: "addPicVC") as! AddPictureViewController
         addPictureVC.delegate = self
@@ -48,6 +48,7 @@ extension TopTableViewController: passDataToTopViewDelegate {
     }
 }
 
+//CollectionView（写真）のセル数、セルの設置
 extension TopTableViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         posts.count
@@ -60,17 +61,16 @@ extension TopTableViewController: UICollectionViewDataSource {
     }
 }
 
+//CollectionView（写真）のセルサイズ
 extension TopTableViewController: UICollectionViewDelegateFlowLayout {
     //セルの大きさを計算。画面サイズに合わせて大小変化する
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let paddingSpace = padding * (itemsPerRow - 1)
         let availableWidth = collectionView.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
-
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
 
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return padding
     }

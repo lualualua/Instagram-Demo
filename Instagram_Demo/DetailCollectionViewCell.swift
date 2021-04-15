@@ -9,6 +9,9 @@ import UIKit
 
 class DetailCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var imageContent: UIImageView!
+    @IBOutlet weak private var imageContent: UIImageView!
 
+    func setCollectionViewCell(image: UIImage) {
+        imageContent.image = image
+    }
 }

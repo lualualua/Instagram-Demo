@@ -13,24 +13,46 @@ protocol passDataToTopViewDelegate {
 }
 
 class AddPictureViewController: UIViewController, UINavigationControllerDelegate {
-    let padding: CGFloat = 1
-    let itemsPerRow: CGFloat = 3
-    var postImages = [UIImage]()
-    var arrSelectedImages: [UIImage] = []
-    var comment: String = ""
-    var imageView = [UIImage]()
-    
-    var delegate: passDataToTopViewDelegate?
-
     @IBOutlet weak private var collectionView: UICollectionView!
+    private let padding: CGFloat = 1
+    private let itemsPerRow: CGFloat = 3
+    private var postImages = [UIImage]()
+    private var arrSelectedImages: [UIImage] = []
+    private var comment: String = ""
+    private var imageView = [UIImage]()
+
+    var delegate: passDataToTopViewDelegate?
+    
+    //カメラ・「＋」マークのアイコン、写真のセルを識別
+    enum Item: Int {
+        case Camera
+        case Album
+        case Others
+        
+        init(rawValue: Int) {
+            if rawValue == 0 {
+                self = .Camera
+            } else if rawValue == 1 {
+                self = .Album
+            } else {
+                self = .Others
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupcollectionView()
+    }
+    
+    //CollectionViewの設定
+    func setupcollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.allowsMultipleSelection = true
     }
     
+    //キャンセルボタンを押した時
     @IBAction func cancelButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -52,6 +74,7 @@ extension AddPictureViewController: modalViewDelegate {
     }
 }
 
+//CollectionView（写真）のセル数、セルの設置
 extension AddPictureViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         postImages.count + 2
@@ -59,39 +82,31 @@ extension AddPictureViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! AddPicCollectionViewCell
-        
-        //カメラのアイコン
-        if indexPath.item == 0 {
+        let item = Item(rawValue: indexPath.item)
+        switch item {
+        case .Camera: //カメラのアイコン
             let imageConfig = UIImage.SymbolConfiguration(pointSize: 40)
-            cell.imageView.image = UIImage(systemName: "camera", withConfiguration: imageConfig)
-            cell.imageView.contentMode = .center
-            cell.backgroundColor = UIColor(red: 0.93, green: 0.94, blue: 0.95, alpha: 1.00)
-            
-        //「＋」マークのアイコン
-        }else if indexPath.item == 1 {
+            let image = UIImage(systemName: "camera", withConfiguration: imageConfig)
+            cell.setImage(image: image!)
+        case .Album: //「＋」マークのアイコン
             let imageConfig = UIImage.SymbolConfiguration(pointSize: 40)
-            cell.imageView.image = UIImage(systemName: "plus", withConfiguration: imageConfig)
-            cell.imageView.contentMode = .center
-            cell.backgroundColor = UIColor(red: 0.93, green: 0.94, blue: 0.95, alpha: 1.00)
-
-        //それ以外のセルには写真を設定
-        }else{
-            cell.imageView.image = postImages[indexPath.row - 2]
+            let image = UIImage(systemName: "plus", withConfiguration: imageConfig)
+            cell.setImage(image: image!)
+        case .Others:
+            let image = postImages[indexPath.row - 2]
+            cell.setImage(image: image)
             cell.imageView.contentMode = .scaleAspectFill
-            cell.imageView.sizeToFit()
         }
         return cell
     }
 }
 
-
+//セルのサイズを設定
 extension AddPictureViewController: UICollectionViewDelegateFlowLayout {
-    //セルのサイズを設定
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let paddingSpace = padding * (itemsPerRow - 1)
         let availableWidth = view.bounds.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
-
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
     
@@ -136,14 +151,14 @@ extension AddPictureViewController: UICollectionViewDelegate, UIImagePickerContr
             }
         }
 
-    //セルを選択解除した時
+    //セルの選択を解除した時
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! AddPicCollectionViewCell
         let selectedImage = cell.imageView.image
         arrSelectedImages = arrSelectedImages.filter {$0 != selectedImage}
     }
     
-    //画像をCollectionViewへ追加
+    //画像をCollectionViewへ追加する
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let cameraPic = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         postImages.append(cameraPic)
@@ -153,7 +168,7 @@ extension AddPictureViewController: UICollectionViewDelegate, UIImagePickerContr
 }
 
 
-//アルバムから写真を選択
+//アルバムを開いて写真を選択する
 extension AddPictureViewController: PHPickerViewControllerDelegate {
 
     func selectPhoto() {
@@ -165,20 +180,18 @@ extension AddPictureViewController: PHPickerViewControllerDelegate {
     }
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-
         for image in results {
             if image.itemProvider.canLoadObject(ofClass: UIImage.self) {
                 image.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] newImage, error in
                         DispatchQueue.main.async {
 
-                            let image = newImage as? UIImage
-                            self?.postImages.append(image!)
+                            guard let image = newImage as? UIImage else { return }
+                            self?.postImages.append(image)
                             self?.collectionView.reloadData()
                     }
                 }
             }
         }
-
         picker.dismiss(animated: true, completion: nil)
     }
 }

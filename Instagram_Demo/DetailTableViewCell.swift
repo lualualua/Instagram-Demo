@@ -8,29 +8,30 @@
 import UIKit
 
 class DetailTableViewCell: UITableViewCell {
-    @IBOutlet weak var iconImage: UIImageView!
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var nameLabelSecond: UILabel!
+    @IBOutlet weak private var iconImage: UIImageView!
+    @IBOutlet weak private var collectionView: UICollectionView!
+    @IBOutlet weak private var nameLabel: UILabel!
+    @IBOutlet weak private var nameLabelSecond: UILabel!
     @IBOutlet weak var comment: UILabel!
-    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak private var pageControl: UIPageControl!
     
     var images: [UIImage] = []
-    var cellWidth: CGFloat!
-    var cellHeight: CGFloat!
+    private var cellWidth: CGFloat!
+    private var cellHeight: CGFloat!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        
-        collectionView.register(UINib(nibName: "DetailCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "DetailCollectionViewCell")
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+        setupCollectionView()
     }
     
+    //CollectionViewの設定
+    func setupCollectionView() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(UINib(nibName: "DetailCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "DetailCollectionViewCell")
+    }
+    
+    //TableViewCellの設定
     func setTableviewCell(post: Post) {
         iconImage.image = post.icon
         nameLabel.text = post.name
@@ -40,26 +41,13 @@ class DetailTableViewCell: UITableViewCell {
     }
     
 }
-extension DetailTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        pageControl.numberOfPages = images.count   //PageControlの設定
-        pageControl.isHidden = !(images.count > 1)
-        return images.count
-    }
+extension DetailTableViewCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailCollectionViewCell", for: indexPath) as! DetailCollectionViewCell
-        cell.imageContent.image = images[indexPath.item]
+        let image = images[indexPath.item]
+        cell.setCollectionViewCell(image: image)
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let collectionViewSize = collectionView.bounds.size
-        cellWidth = collectionViewSize.width
-        cellHeight = collectionViewSize.height
-        
-        return CGSize(width: cellWidth, height: cellHeight)
     }
     
     //PageをスライドしたらPageControlのマークを移動する
@@ -67,6 +55,22 @@ extension DetailTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
         let scroll = scrollView.contentOffset.x / scrollView.frame.width
         pageControl.currentPage = Int(scroll)
     }
-    
 
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        pageControl.numberOfPages = images.count   //PageControlの設定
+        pageControl.isHidden = !(images.count > 1) //写真が1枚だったら、PageControlを表示しない
+        return images.count
+    }
 }
+
+//CollectionViewCell（写真）のサイズを調整
+extension DetailTableViewCell: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let collectionViewSize = collectionView.bounds.size
+        cellWidth = collectionViewSize.width
+        cellHeight = collectionViewSize.height
+        
+        return CGSize(width: cellWidth, height: cellHeight)
+    }
+}
+

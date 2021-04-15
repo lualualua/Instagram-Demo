@@ -8,6 +8,11 @@
 import UIKit
 
 class AddCommentCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak private var imageView: UIImageView!
     
+    func setupCell(image: UIImage) {
+        imageView.image = image
+        imageView.layer.cornerRadius = 10.0
+        imageView.contentMode = .scaleAspectFill
+    }
 }

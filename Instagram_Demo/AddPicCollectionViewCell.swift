@@ -16,4 +16,11 @@ class AddPicCollectionViewCell: UICollectionViewCell {
             self.layer.borderColor = isSelected ? UIColor.blue.cgColor : UIColor.clear.cgColor
         }
     }
+    
+    func setImage(image: UIImage) {
+        imageView.image = image
+        imageView.contentMode = .center
+        self.backgroundColor = UIColor(red: 0.93, green: 0.94, blue: 0.95, alpha: 1.00)
+        imageView.sizeToFit()
+    }
 }

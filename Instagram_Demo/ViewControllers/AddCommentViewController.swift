@@ -13,19 +13,17 @@ protocol modalViewDelegate {
 
 class AddCommentViewController: UIViewController {
 
-    @IBOutlet weak var imageCollectionView: UICollectionView!
-    @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var countLabel: UILabel!
-    var placeholderLabel : UILabel!
+    @IBOutlet weak private var imageCollectionView: UICollectionView!
+    @IBOutlet weak private var textView: UITextView!
+    @IBOutlet weak private var countLabel: UILabel!
+    private var placeholderLabel : UILabel!
     var selectedImagesArr = [UIImage]()
-    let cellScale: CGFloat = 0.9
-    var cellWidth: CGFloat!
-    var cellHeight: CGFloat!
-    var insetX: CGFloat!
-    var viewWidth: CGFloat!
-    var viewHeight: CGFloat!
-    var collectionViewSize: CGFloat!
-    var toolbarHeight: CGFloat!
+    private let cellScale: CGFloat = 0.9
+    private var cellWidth: CGFloat!
+    private var cellHeight: CGFloat!
+    private var insetX: CGFloat!
+    private var collectionViewSize: CGFloat!
+    private var toolbarHeight: CGFloat!
     
     var delegate: modalViewDelegate?
     
@@ -84,6 +82,7 @@ class AddCommentViewController: UIViewController {
         delegate?.didUploadPost(comment: comment, imageView: selectedImagesArr)
     }
 
+    //キーボードが表示されたら画面を上部へ持ち上げる
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
@@ -92,47 +91,47 @@ class AddCommentViewController: UIViewController {
         }
     }
     
+    //キーボードが閉じたら画面を元に戻す（下へ下げる）
     @objc func keyboardWillHide() {
         self.view.frame.origin.y = 0
     }
 
+    //キーボード外をクリックしたらキーボードを閉じる
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
-
     }
     
+    //キーボードのDoneボタンを押すとき
     @objc func doneButtonTapped() {
         self.view.endEditing(true)
     }
-
 }
 
-extension AddCommentViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+//CollectionView（写真）のセル数、セルの設置
+extension AddCommentViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return selectedImagesArr.count
         }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addCommentCollectionViewCell", for: indexPath) as! AddCommentCollectionViewCell
-        cell.imageView.image = selectedImagesArr[indexPath.item]
-        cell.imageView.layer.cornerRadius = 10.0
-        cell.imageView.contentMode = .scaleAspectFill
-        
+        let image = selectedImagesArr[indexPath.item]
+        cell.setupCell(image: image)
         return cell
         }
-    
+}
+
+//CollectionView（写真）のセルサイズ
+extension AddCommentViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            
             let collectionViewSize = collectionView.bounds.size
             cellWidth = floor(UIScreen.main.bounds.width * cellScale)
             cellHeight = collectionViewSize.height
-            
             return CGSize(width: cellWidth, height: cellHeight)
         }
     
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        
         if selectedImagesArr.count == 1 {
             insetX = (collectionView.bounds.width - cellWidth) / 2.0
             return UIEdgeInsets(top: 0, left: insetX, bottom: 0, right: insetX)
@@ -142,14 +141,12 @@ extension AddCommentViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-
         return insetX
     }
 }
 
-
+//コメントを入れるTextViewの設定
 extension AddCommentViewController: UITextViewDelegate {
-    
     //TextViewの文字数に制限を設ける
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         // get the current text, or use an empty string if that failed
